@@ -8,11 +8,11 @@ A SinusBot plugin that will let a Telegram bot send a message when a user joins 
 
 ### Settings
 
-| Property | Description                                           |
-| -------- | ----------------------------------------------------- |
-| messages | The message that should be displayed. (%n = nickname) |
-| token    | Token of Telegram bot                                 |
-| chatID   | Chat ID of Telegram bot                               |
+| Property | Description                                           | Examples                                  |
+| -------- | ----------------------------------------------------- | ----------------------------------------- |
+| messages | The message that should be displayed. (%n = nickname) | % has joined the teamspeak.               |
+| token    | Token of Telegram bot                                 | 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11 |
+| chatID   | Chat ID of Telegram bot                               | -12345678                                 |
 
 
 ## Welcome TTS
@@ -20,8 +20,8 @@ A SinusBot plugin that will let a Telegram bot send a message when a user joins 
 A SinusBot plugin that greets a user when joining the TeamSpeak server.
 
 It can send special greeting messages for individual users by assigning messages with a users *UniqueID*.
-The Value `default` sends the associated message to every user who isn't defined in the settings.
-Providing no value will only send or say the users Nickname.
+Using the value `default` sends the associated message to every user who isn't explicitly defined in the settings.
+Users without a setting will only read or hear their nickname.
 
 ### Settings
 
