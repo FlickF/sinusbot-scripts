@@ -43,40 +43,41 @@ registerPlugin({
 	const audio   = require('audio');
 	const backend = require('backend');
 
+	/**
+	 * Event listener on moved clients.
+	 */
 	event.on('clientMove', ({ client, fromChannel, toChannel }) => {
-			// exclude the bot
-			if (client.isSelf()) {
-					return false;
+		// exclude the bot
+		if (client.isSelf()) {
+			return false;
+		}
+
+		const botChannel = backend.getCurrentChannel();
+		let message      = '%n';
+
+		for (const greeting of messages) {
+			// pick up any default entry ...
+			if (greeting.uid === 'default') {
+				message = greeting.message;
+			} else if (greeting.uid === client.uid()) {
+				// ... or a message for a specific user
+				message = greeting.message;
+				break;
 			}
+		}
 
-			let message = '%n';
+		// replace variables in the message
+		message = message.replace('%n', client.name());
 
-			for (const greeting of messages) {
-					// pick up any default entry ...
-					if (greeting.uid === 'default') {
-							message = greeting.message;
-					} else if (greeting.uid === client.uid()) {
-							// ... or a message for a specific user
-							message = greeting.message;
-							break;
-					}
+		// greet user
+		if (!fromChannel || (trigger && toChannel && (toChannel.id() === botChannel.id()))) {
+			if (type == 0) {
+				client.chat(message);
+			} else if (type == 1) {
+				client.poke(message);
+			} else {
+				audio.say(message, locale);
 			}
-
-			// replace variables in the message
-			message = message.replace('%n', client.name());
-
-
-			const botChannel = backend.getCurrentChannel();
-
-			// greet user
-			if (!fromChannel || (trigger && toChannel && (toChannel.id() === botChannel.id()))) {
-					if (type == 0) {
-							client.chat(message);
-					} else if (type == 1) {
-							client.poke(message);
-					} else {
-							audio.say(message, locale);
-					}
-			}
+		}
 	});
 });

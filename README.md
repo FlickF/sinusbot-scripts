@@ -10,7 +10,7 @@ A SinusBot plugin that will let a Telegram bot send a message when a user joins 
 
 | Property | Description                                           | Examples                                  |
 | -------- | ----------------------------------------------------- | ----------------------------------------- |
-| messages | The message that should be displayed. (%n = nickname) | % has joined the teamspeak.               |
+| messages | The message that should be displayed. (%n = nickname) | %n has joined the teamspeak.               |
 | token    | Token of Telegram bot                                 | 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11 |
 | chatID   | Chat ID of Telegram bot                               | -12345678                                 |
 
